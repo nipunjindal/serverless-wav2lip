@@ -1,0 +1,9 @@
+torch==1.13.1+cu116
+torchvision==0.14.1+cu116
+torchaudio==0.13.1
+torchtext==0.14.1
+torchdata==0.5.1
+gradio
+yt_dlp
+ffmpeg-python
+librosa==0.8.0
