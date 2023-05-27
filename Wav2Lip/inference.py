@@ -241,7 +241,7 @@ def main():
 
 	print("Length of mel chunks: {}".format(len(mel_chunks)))
 	print("Codec ", cv2.VideoWriter_fourcc(*'DIVX'))
- 	print("Codec ", cv2.VideoWriter_fourcc(*'XVID'))
+	print("Codec ", cv2.VideoWriter_fourcc(*'XVID'))
 	# print("Available ", cv2.VideoWriter_fourcc(*'NONEXISTENT'))
 
 	full_frames = full_frames[:len(mel_chunks)]
