@@ -4,17 +4,17 @@ import os
 import subprocess
     
 def download_video(url):
-  ydl_opts = {'overwrites':True, 'format':'bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4', 'outtmpl':'/content/video.mp4'}
+  ydl_opts = {'overwrites':True, 'format':'bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4', 'outtmpl':'/tmp/video.mp4'}
   with YoutubeDL(ydl_opts) as ydl:
     ydl.download(url)
-    return f"/content/video.mp4"
+    return f"/tmp/video.mp4"
 
 def generate(audio_in, video_in):
     print(audio_in, video_in)
     if video_in is not None:
       command = f"python Wav2Lip/inference.py --checkpoint_path Wav2Lip/checkpoints/wav2lip_gan.pth --face '{video_in}' --audio '{audio_in}'"
     else:
-      command = f"python Wav2Lip/inference.py --checkpoint_path checkpoints/wav2lip_gan.pth --face '/content/video.mp4' --audio '{audio_in}'"
+      command = f"python Wav2Lip/inference.py --checkpoint_path checkpoints/wav2lip_gan.pth --face '/tmp/video.mp4' --audio '{audio_in}'"
     result = subprocess.run(command, shell=True, capture_output=True, text=True)
 
     print("stdout:", result.stdout)

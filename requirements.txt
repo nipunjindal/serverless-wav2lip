@@ -10,4 +10,4 @@ librosa==0.8.0
 tqdm
 opencv-contrib-python
 opencv-python
-numpy
+numpy==1.22.4
