@@ -11,21 +11,43 @@ def download_video(url):
 
 def generate(audio_in, video_in):
     print(audio_in, video_in)
+    
+    # Get the current working directory
+    current_dir = os.getcwd()
+    inference_script = os.path.join(current_dir, "Wav2Lip", "inference.py")
+    checkpoint_path = os.path.join(current_dir, "Wav2Lip", "checkpoints", "wav2lip_gan.pth")
+    output_path = os.path.join(current_dir, "Wav2Lip", "results", "result_voice.mp4")
+    
     if video_in is not None:
-      command = f"python Wav2Lip/inference.py --checkpoint_path Wav2Lip/checkpoints/wav2lip_gan.pth --face '{video_in}' --audio '{audio_in}'"
+      command = f"python {inference_script} --checkpoint_path {checkpoint_path} --face '{video_in}' --audio '{audio_in}'"
     else:
-      command = f"python Wav2Lip/inference.py --checkpoint_path Wav2Lip/checkpoints/wav2lip_gan.pth --face '/tmp/video.mp4' --audio '{audio_in}'"
+      command = f"python {inference_script} --checkpoint_path {checkpoint_path} --face '/tmp/video.mp4' --audio '{audio_in}'"
     result = subprocess.run(command, shell=True, capture_output=True, text=True)
 
     print("stdout:", result.stdout)
     print("stderr:", result.stderr)
 
     # os.system(f"python inference.py --checkpoint_path checkpoints/wav2lip_gan.pth --face '/content/video.mp4' --audio '{audio_in}'")
-    return f"Wav2Lip/results/result_voice.mp4"
+    return f"{output_path}"
+
+html_template = """
+<style>
+h1 {
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+    background: linear-gradient(to right, #FF512F, #DD2476);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+</style>
+
+<h1>Made a cool AI song? Bring it to life.</h1>
+"""
 
 app = gr.Blocks()
 with app:
-  gr.Markdown("""!Made a cool AI song? Bring it to life.""")
+  gr.Markdown(html_template)
   with gr.Row():
     with gr.Column():
       input_text = gr.Textbox(show_label=False, value="https://www.youtube.com/watch?v=FAyKDaXEAgc")
