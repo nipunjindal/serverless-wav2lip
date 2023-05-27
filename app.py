@@ -14,7 +14,7 @@ def generate(audio_in, video_in):
     if video_in is not None:
       command = f"python Wav2Lip/inference.py --checkpoint_path Wav2Lip/checkpoints/wav2lip_gan.pth --face '{video_in}' --audio '{audio_in}'"
     else:
-      command = f"python Wav2Lip/inference.py --checkpoint_path checkpoints/wav2lip_gan.pth --face '/tmp/video.mp4' --audio '{audio_in}'"
+      command = f"python Wav2Lip/inference.py --checkpoint_path Wav2Lip/checkpoints/wav2lip_gan.pth --face '/tmp/video.mp4' --audio '{audio_in}'"
     result = subprocess.run(command, shell=True, capture_output=True, text=True)
 
     print("stdout:", result.stdout)
@@ -25,7 +25,7 @@ def generate(audio_in, video_in):
 
 app = gr.Blocks()
 with app:
-  gr.Markdown("""Enhance your music!""")
+  gr.Markdown("""!Made a cool AI song? Bring it to life.""")
   with gr.Row():
     with gr.Column():
       input_text = gr.Textbox(show_label=False, value="https://www.youtube.com/watch?v=FAyKDaXEAgc")
