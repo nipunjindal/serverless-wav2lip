@@ -7,3 +7,7 @@ gradio
 yt_dlp
 ffmpeg-python
 librosa==0.8.0
+tqdm
+opencv-contrib-python
+opencv-python
+numpy

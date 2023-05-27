@@ -25,11 +25,12 @@ def generate(audio_in, video_in):
 
 app = gr.Blocks()
 with app:
+  gr.Markdown("""Enhance your music!""")
   with gr.Row():
     with gr.Column():
       input_text = gr.Textbox(show_label=False, value="https://www.youtube.com/watch?v=FAyKDaXEAgc")
-      input_download_button = gr.Button(value="Download from YouTube or Twitch")
       video_in = gr.Video(show_label=False, type='filepath')
+      input_download_button = gr.Button(value="Download from YouTube or Upload video")
       audio_in = gr.Audio(show_label=False, type='filepath')
       input_generate_button = gr.Button(value="Generate")
     with gr.Column():
